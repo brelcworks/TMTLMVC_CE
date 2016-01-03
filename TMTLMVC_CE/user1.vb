@@ -9,10 +9,14 @@
 
 Imports System
 Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
 
 Partial Public Class user1
     Public Property CID As Integer
+    <Required(ErrorMessage:="Please Provide Username", AllowEmptyStrings:=False)>
     Public Property uid As String
+    <Required(ErrorMessage:="Please provide password", AllowEmptyStrings:=False)> _
+    <DataType(System.ComponentModel.DataAnnotations.DataType.Password)>
     Public Property pass As String
     Public Property fname As String
     Public Property lname As String

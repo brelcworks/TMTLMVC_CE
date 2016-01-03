@@ -1,4 +1,4 @@
-﻿@ModelType  TMTLMVC_CE.MAINPOPU
+﻿@ModelType TMTLMVC_CE.user1
 
 @Code
     Layout = Nothing
@@ -33,14 +33,14 @@ End Code
                         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <div class="navbar-form navbar-right" role="search" >
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                    </div>
+                        @Using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                            @<fieldset>
+                                    @Html.TextBoxFor(Function(model) model.uid)
+                                    @Html.PasswordFor(Function(model) model.pass)
+                                 <button type="submit" class="btn btn-primary btn-xs" value="Login">Sign In</button>
+                            </fieldset> 
+                        End Using 
+                   </div>
                 </div>
             </div>
         </nav>
