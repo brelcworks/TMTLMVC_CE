@@ -4,7 +4,7 @@
     Dim grid = New WebGrid(source:=Model, canPage:=False, canSort:=True)
 End Code
 
-        @grid.GetHtml(tableStyle:="table table-hover table-bordered", _
+        @grid.GetHtml(tableStyle:="webgrid-table", _
                    columns:=grid.Columns( _
                         grid.Column("sid", "Site Id"),
                         grid.Column("Cname", "Customer"), _
@@ -16,6 +16,6 @@ End Code
                         grid.Column("cpn", "Contact Person"), _
                         grid.Column("phno", "Ph. No"), _
                         grid.Column("doc", "DT. of Comm.") _
-                        ) _
+                        ), headerStyle:="webgrid-header", footerStyle:="webgrid-footer", alternatingRowStyle:="webgrid-alternating-row", selectedRowStyle:="webgrid-selected-row", rowStyle:="webgrid-row-style" _
                     )
     

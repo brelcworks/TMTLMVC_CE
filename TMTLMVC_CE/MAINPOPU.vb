@@ -9,6 +9,8 @@
 
 Imports System
 Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
+Imports System.Web.DynamicData
 
 Partial Public Class MAINPOPU
     Public Property RID As Integer
@@ -25,6 +27,7 @@ Partial Public Class MAINPOPU
     Public Property CPN As String
     Public Property PHNO As String
     Public Property ADDR As String
+    <DisplayFormat(ApplyFormatInEditMode:=True, DataFormatString:="{0:dd-MMMM-yyyy}")>
     Public Property DOC As Nullable(Of Date)
     Public Property SPIN As String
     Public Property AMC As String
