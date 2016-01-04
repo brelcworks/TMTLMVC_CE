@@ -73,6 +73,12 @@ End Code
                             <li><a>@Html.ActionLink("Population", "Index", "Pop")</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a>@Html.ActionLink("Stock List", "List", "Stock")</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="navbar-form navbar-right" role="search">
                     @If Session("LogedUserID") <> "" Then

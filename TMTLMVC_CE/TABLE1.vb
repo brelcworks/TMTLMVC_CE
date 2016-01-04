@@ -9,6 +9,7 @@
 
 Imports System
 Imports System.Collections.Generic
+Imports System.ComponentModel.DataAnnotations
 
 Partial Public Class TABLE1
     Public Property RID1 As Integer
