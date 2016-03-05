@@ -144,10 +144,10 @@ if(!$_SESSION["auth"])
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="pop.php">Services</a>
+                        <a href="POP.php">Services</a>
                     </li>
 <li>
-                        <a href="pop1.php">Site List</a>
+                        <a href="POP1.php">Site List</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
