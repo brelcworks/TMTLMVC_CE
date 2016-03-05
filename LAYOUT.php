@@ -154,7 +154,7 @@ if(!$_SESSION["auth"])
                     </li>
                 </ul>
 				<ul class="nav navbar-nav navbar-right">
-                    <li><a class="navbar-brand" href="LOGOUT.php">LOGOUT &nbsp; <?php echo $_SESSION['FNAME']; ?></a></li>
+                    <li><a class="navbar-brand" href="LOGOUT.PHP">LOGOUT &nbsp; <?php echo $_SESSION['FNAME']; ?></a></li>
                 </ul>
             </div>
         </div>
