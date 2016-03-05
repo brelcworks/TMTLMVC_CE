@@ -1,3 +1,27 @@
+<?php
+if (isset($_POST['btnLogin']))
+{
+require 'Connect.php';
+$uid = $_POST['uid1'];
+$pass1 = $_POST['pass1'];
+$RESULT = mysqli_query($db1, "SELECT * FROM USER WHERE UID='$uid' AND PASS='$pass1'");
+if (mysqli_num_rows($RESULT)==1){
+	session_start();
+	session_cache_expire(120);
+	$_SESSION['username'] = $uid;
+	$_SESSION["auth"] = 'true';
+	$row_rsmyQuery = mysqli_fetch_assoc($RESULT);
+	$_SESSION["FNAME"] = $row_rsmyQuery['FNAME'];
+	$_SESSION["PNAME"] = "AFTER LOGIN";
+	header ("Location: After_Login.php");
+}
+else {
+	echo '<script>alert("Invalid User or Password");</script>';
+}
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -135,15 +159,6 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-				<form class="navbar-form navbar-right" id="login-form" action="LOGIN.php" method="post" name="Sign In" style="display: block;">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" id="uid1" name="uid1">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" id="pass1" name="pass1">
-            </div>
-            <button type="submit" class="btn btn-success" id="btnLOG" name="btnLogin">Sign in</button>
-          </form>
             </div>
         </div>
     </nav>
@@ -155,7 +170,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-6">
-                                <a href="#" class="active" id="login-form-link">SIGN UP HERE</a>
+                                <a href="#" class="active" id="login-form-link">SIGN IN HERE</a>
                             </div>
                         </div>
                         <hr>
@@ -163,27 +178,19 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" action="SIGNUP.php" method="post" name="Sign Up" style="display: block;">
+                                <form id="login-form" action="LOGIN.php" method="post" name="Sign Up" style="display: block;">
                                     <div class="form-group">
                                         <label>User Id</label>
-										<input type="text" class="form-control" name="uid"/>
+										<input type="text" class="form-control" name="uid1"/>
                                     </div>
                                     <div class="form-group">
                                        <label>Password</label>
-										<input type="Password" class="form-control" name="pass"/>
-                                    </div>
-									<div class="form-group">
-                                        <label>First Name</label>
-										<input type="text" class="form-control" name="fname"/>
-                                    </div>
-                                    <div class="form-group">
-                                       <label>Last Name</label>
-										<input type="text" class="form-control" name="lname"/>
+										<input type="Password" class="form-control" name="pass1"/>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" class="form-control btn btn-login" value="SIGN UP">
+                                                <input type="submit" class="form-control btn btn-login" name="btnLogin" value="SIGN IN">
                                             </div>
                                         </div>
                                     </div>

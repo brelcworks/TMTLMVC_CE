@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!$_SESSION["auth"])
+{
+    header('Location: login.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -5,11 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>MY HTML PAGE</title>
+    <title><?php echo $_SESSION['PNAME']; ?></title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/heroic-features.css" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css' />
+    <link rel='stylesheet' type='text/css' href='http://www.trirand.com/blog/jqgrid/themes/ui.jqgrid.css' />
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	
+	<script type='text/javascript' src='http://www.trirand.com/blog/jqgrid/js/jquery-ui-custom.min.js'></script>        
+    <script type='text/javascript' src='http://www.trirand.com/blog/jqgrid/js/i18n/grid.locale-en.js'></script>
+    <script type='text/javascript' src='http://www.trirand.com/blog/jqgrid/js/jquery.jqGrid.js'></script>
 	<style type="text/css" >
     body {
     padding-top: 90px;
@@ -129,69 +144,19 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="pop.php">Services</a>
+                    </li>
+<li>
+                        <a href="pop1.php">Site List</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-				<form class="navbar-form navbar-right" id="login-form" action="LOGIN.php" method="post" name="Sign In" style="display: block;">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" id="uid1" name="uid1">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" id="pass1" name="pass1">
-            </div>
-            <button type="submit" class="btn btn-success" id="btnLOG" name="btnLogin">Sign in</button>
-          </form>
+				<ul class="nav navbar-nav navbar-right">
+                    <li><a class="navbar-brand" href="LOGOUT.PHP">LOGOUT &nbsp; <?php echo $_SESSION['FNAME']; ?></a></li>
+                </ul>
             </div>
         </div>
     </nav>
 </head>
-<body>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-login">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <a href="#" class="active" id="login-form-link">SIGN UP HERE</a>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form id="login-form" action="SIGNUP.php" method="post" name="Sign Up" style="display: block;">
-                                    <div class="form-group">
-                                        <label>User Id</label>
-										<input type="text" class="form-control" name="uid"/>
-                                    </div>
-                                    <div class="form-group">
-                                       <label>Password</label>
-										<input type="Password" class="form-control" name="pass"/>
-                                    </div>
-									<div class="form-group">
-                                        <label>First Name</label>
-										<input type="text" class="form-control" name="fname"/>
-                                    </div>
-                                    <div class="form-group">
-                                       <label>Last Name</label>
-										<input type="text" class="form-control" name="lname"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" class="form-control btn btn-login" value="SIGN UP">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</body>
