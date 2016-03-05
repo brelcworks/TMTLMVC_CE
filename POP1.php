@@ -1,6 +1,6 @@
 <?php
-$_SESSION["PNAME"] = "POPULATION";
 require 'LAYOUT.php';
+$_SESSION["PNAME"] = "POPULATION";
 ?>
 <html>
 <script>
