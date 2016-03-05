@@ -20,9 +20,8 @@ if(!$_SESSION["auth"])
     <link rel='stylesheet' type='text/css' href='http://www.trirand.com/blog/jqgrid/themes/ui.jqgrid.css' />
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="styles/jqx.base.css" type="text/css" />
+	<link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
 <link rel="stylesheet" href="jqwidgets/styles/jqx.classic.css" type="text/css" />
-<script type="text/javascript" src="js/jquery-ui-1.10.0.min.js"></script>
 <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
 <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
 <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
