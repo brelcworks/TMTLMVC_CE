@@ -8,7 +8,7 @@ $type = $db['type'];
 
 $db1 = mysqli_connect($host, $user, $pass, $name);
 if($db1) {
-	echo "Hello";
+
 }
 else {
 	echo mysql_error();
