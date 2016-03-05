@@ -1,6 +1,5 @@
 <?php
 include ("connect1.php"); 
-
 $page = $_GET['page']; 
 $limit = $_GET['rows']; 
 $sidx = $_GET['sidx']; 
@@ -22,7 +21,7 @@ $start = $limit*$page - $limit;
 if($start <0) $start = 0; 
 
 $SQL = "SELECT * FROM MAINPOPUs ORDER BY $sidx $sord LIMIT $start , $limit"; 
-$result = mysql_query( $SQL ) or die("Couldn't execute query.".mysql_error()); 
+$result = mysql_query($SQL) or die("Couldn't execute query.".mysql_error()); 
 
 $i=0;
 while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {

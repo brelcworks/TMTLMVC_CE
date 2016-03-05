@@ -1,25 +1,38 @@
 <?php
-require 'LAYOUT.php';
 $_SESSION["PNAME"] = "POPULATION";
+require 'LAYOUT.php';
+include ("connect1.php");
 ?>
 <html>
 <script>
 	$(document).ready(function () {
-    // prepare the data
-    var source ={
-        datatype: "json",
-        datafields: [{ name: 'CNAME' },{ name: 'SNAME' },{ name: 'SID' },{ name: 'ENS' },{ name: 'ALSN' },],
-        url: 'data.php'
-    };
-    $("#jqxgrid").jqxGrid({
-        source: source,
-        theme: 'classic',
-        columns: [{ text: 'CUSTOMER', datafield: 'CNAME', width: 250 },{ text: 'SITE NAME', datafield: 'SNAME', width: 150 },{ text: 'SITE ID', datafield: 'ENS', width: 180 },{ text: 'ENGINE NO', datafield: 'ENS', width: 200 },{ text: 'ALT. NO', datafield: 'ALSN', width: 120 }]
-    });
-});
+		$("#list_records").jqGrid({
+			url: "getGridData.php",
+			datatype: "json",
+			mtype: "GET",
+			colNames: ["Record No", "Customer", "Site Name", "Site Id", "Engine No"],
+			colModel: [
+                                { name: "RID",align:"right"},
+				{ name: "CNAME",align:"right"},
+				{ name: "SNAME"},
+				{ name: "SID"},
+				{ name: "ENS"}
+			],
+			pager: "#perpage",
+			rowNum: 10,
+			rowList: [10,20],
+			sortname: "sname",
+			sortorder: "asc",
+			height: 'auto',
+			viewrecords: true,
+			gridview: true,
+			caption: ""
+		}); 	
+	});
 	</script>
 <hr/>
 <h2>List of Sites</h2>
-<div id="jqxgrid"></div>
+<table id="list_records"><tr><td></td></tr></table> 
+<div id="perpage"></div>
 <hr/>
 </html>
