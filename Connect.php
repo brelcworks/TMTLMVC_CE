@@ -6,7 +6,7 @@ $host = "e891d6b4-ce2a-4893-9823-a5a900b1754d.mysql.sequelizer.com";
 
 $db1 = mysqli_connect($host, $user, $pass, $name);
 if($db1) {
-	mysql_select_db($name);
+	echo "Hello";
 }
 else {
 	echo mysql_error();
