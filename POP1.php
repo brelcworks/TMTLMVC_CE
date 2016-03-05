@@ -1,7 +1,6 @@
 <?php
 $_SESSION["PNAME"] = "POPULATION";
 require 'LAYOUT.php';
-include ("connect1.php");
 ?>
 <html>
 <script>
