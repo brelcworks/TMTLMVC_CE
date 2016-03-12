@@ -7,7 +7,7 @@ $records = sqlsrv_query( $conn, $sql );
 ?>
 <html>
 <hr/>
-<div style="font-size : smaller; width:98%; margin-left:1%">
+<div style="font-size :smaller; width:98%; margin-left:1%">
 <h4>LIST OF ISSUES</h4>
 <table class="table table-bordered table-hover table-responsive">
 <tr>
