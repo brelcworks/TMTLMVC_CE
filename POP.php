@@ -1,44 +1,46 @@
 <?php
 $_SESSION["PNAME"] = "POPULATION";
 require 'LAYOUT.php';
-include ("connect1.php");
-$sql = "SELECT * FROM MAINPOPUs";
-$records = mysql_query($sql);
+include ("MSSQL.php");
+$sql = "SELECT * FROM PMRs";
+$records = sqlsrv_query( $conn, $sql );
 ?>
 <html>
 <hr/>
-<h2>List of Sites</h2>
-<table class="table table-bordered table-hover table-responsive" style="font-size : smaller">
+<div style="font-size : smaller; width:98%; margin-left:1%">
+<h4>LIST OF ISSUES</h4>
+<table class="table table-bordered table-hover table-responsive">
 <tr>
 <th nowrap bgcolor="#00ffe1">Site Id</th>
         <th nowrap bgcolor="#00ffe1">Customer</th>
         <th nowrap bgcolor="#00ffe1">Site Name</th>
         <th nowrap bgcolor="#00ffe1">Engine No</th>
         <th nowrap bgcolor="#00ffe1">Rating</th>
-        <th nowrap bgcolor="#00ffe1">Phase</th>
-        <th nowrap bgcolor="#00ffe1">Contact Person</th>
-        <th nowrap bgcolor="#00ffe1">Ph No</th>
-        <th nowrap bgcolor="#00ffe1">DT of Commissioning</th>
-        <th nowrap bgcolor="#00ffe1">Current Hmr</th>
+        <th nowrap bgcolor="#00ffe1">DT. of Issue</th>
+        <th nowrap bgcolor="#00ffe1">Issue Closed Dt</th>
+        <th nowrap bgcolor="#00ffe1">HMR</th>
+        <th nowrap bgcolor="#00ffe1">Issue Type</th>
+<th nowrap bgcolor="#00ffe1">Issue Status</th>
         <th nowrap bgcolor="#00ffe1">RECORD OPERATION</th>
 </tr>
 <?php
-while ($pops = mysql_fetch_assoc($records)){
+while ($pops = sqlsrv_fetch_array( $records, SQLSRV_FETCH_ASSOC)){
 	echo "<tr>";
-	echo "<td>".$pops['SID']."</td>";
-	echo "<td>".$pops['CNAME']."</td>";
-	echo "<td>".$pops['SNAME']."</td>";
-	echo "<td>".$pops['ENS']."</td>";
-	echo "<td>".$pops['RAT_PH']."</td>";
-	echo "<td>".$pops['PHASE']."</td>";
-	echo "<td>".$pops['CPN']."</td>";
-	echo "<td>".$pops['PHNO']."</td>";
-	echo "<td>".$pops['DOC']."</td>";
-	echo "<td>".$pops['CHMR']."</td>";
+	echo "<td nowrap>".$pops['SID']."</td>";
+	echo "<td nowrap>".$pops['CUST']."</td>";
+	echo "<td nowrap>".$pops['SNAME']."</td>";
+	echo "<td nowrap>".$pops['ENGINE_No']."</td>";
+	echo "<td nowrap>".$pops['KVA']."</td>";
+	echo "<td nowrap>".$pops['DOS']."</td>";
+	echo "<td nowrap>".$pops['CDATI']."</td>";
+	echo "<td nowrap>".$pops['HMR']."</td>";
+	echo "<td nowrap>".$pops['STYPE']."</td>";
+	echo "<td nowrap>".$pops['STA']."</td>";
 	echo "<td></td>";
 	echo "</tr>";
 }
 ?>
 </table>
+</div>
 <hr/>
 </html>
