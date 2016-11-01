@@ -4,7 +4,7 @@ if (isset($_POST['btnLogin']))
 require 'Connect.php';
 $uid = $_POST['uid1'];
 $pass1 = $_POST['pass1'];
-$RESULT = mysqli_query($db1, "SELECT * FROM USER WHERE UID='$uid' AND PASS='$pass1'");
+$RESULT = mysqli_query($db1, "SELECT * FROM user WHERE UID='$uid' AND PASS='$pass1'");
 if (mysqli_num_rows($RESULT)==1){
 	session_start();
 	session_cache_expire(120);
