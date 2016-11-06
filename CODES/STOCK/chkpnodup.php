@@ -1,7 +1,10 @@
 <?php
-require 'Connect.php';
+require 'MSSQL.php';
 $aData=$_GET['aData'];
-$RESULT = mysqli_query($db1, "SELECT * FROM TABLE1 WHERE PART_NO='".$aData."'");
-$cn = mysqli_num_rows($RESULT);
+$RESULT = "SELECT * FROM TABLE2 WHERE PART_NO='".$aData."'";
+$params = array();
+$options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+$stmt = sqlsrv_query( $conn, $RESULT , $params, $options );
+$cn = sqlsrv_num_rows( $stmt );
 echo $cn;
 ?>

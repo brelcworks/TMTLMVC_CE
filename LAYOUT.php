@@ -6,7 +6,7 @@ if(!$_SESSION["auth"])
 }
 else
 {
-	require 'chkmysqltbl.php';
+	require 'CHKSQL.php';
 }
 ?>
 <!DOCTYPE html>
@@ -67,10 +67,7 @@ else
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="POP.php">Services</a>
-                    </li>
-					<li>
-                        <a href="POP1.php">Site List</a>
+                        <a href="POP.php">SERVICES</a>
                     </li>
                     <li>
                         <a href="ST_LIST.php">STOCK</a>

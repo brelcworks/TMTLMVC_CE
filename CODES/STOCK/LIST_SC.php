@@ -3,7 +3,7 @@
 include ('MSSQL.php');
 // Connect to the database
     $myArray = array();
-    if ($result = sqlsrv_query($conn, "SELECT * FROM MAINPOPUs")) {
+    if ($result = sqlsrv_query($conn, "SELECT * FROM TABLE2")) {
         $tempArray = array();
         while($row = sqlsrv_fetch_object( $result)) {
                 $tempArray = $row;

@@ -3,7 +3,7 @@ $_SESSION["PNAME"] = "STOCK LIST";
 require 'LAYOUT.php';
 if (isset($_POST['sv2']))
 {
-	include ("connect1.php");
+	include ("MSSQL.php");
 	$PRPART_NO = $_POST['PRPART_NO'];
 	$PRCATE = $_POST['PRCATE'];
 	$PRPARTI = $_POST['PRPARTI'];
@@ -15,8 +15,8 @@ if (isset($_POST['sv2']))
 	$PRlmodi = $_POST['PRlmodi'];
 	$PRrid1 = $_POST['PRrid1'];
 	$PRAEDT = $_POST['PRAEDT'];
-	$query = mysql_query("insert into sheet1(PART_NO, PARTI, MRP, GROP, CATE, DPCODE, lmodi, TRATE, rid1, UNIT, AEDT) values ('$PRPART_NO', '$PRPARTI', '$PRMRP', '$PRGROP', '$PRCATE', '$PRDPCODE', '$PRlmodi', '$PRTRATE', '$PRrid1', '$PRunit', '$PRAEDT')");
-	if ($query) {
+	$query = sqlsrv_query($conn, "insert into SHEET1(PART_NO, PARTI, MRP, GROP, CATE, DPCODE, lmodi, TRATE, rid1, unit, AEDT) values ('$PRPART_NO', '$PRPARTI', '$PRMRP', '$PRGROP', '$PRCATE', '$PRDPCODE', '$PRlmodi', '$PRTRATE', '$PRrid1', '$PRunit', '$PRAEDT')");
+	if ($query === true) {
 	echo '<script>alert("RECORD ADDED");</script>';
 }
 else {
@@ -46,6 +46,7 @@ else {
 <script>
 $(function () {
     $(document).ready(function () {
+		var $modal = $('#load_popup_modal_show_id');
         var source =
        {
            datatype: "json",
@@ -61,7 +62,7 @@ $(function () {
                 { name: 'UNIT', type: 'string' },
                 { name: 'EOR', type: 'string' },
            ],
-           url: 'LIST_SC.php'
+           url: 'CODES/STOCK/LIST_SC.php'
        };
         var editrow = -1;
         var dataAdapter = new $.jqx.dataAdapter(source);
@@ -97,22 +98,10 @@ $(function () {
                                 var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
                                 var ens = dataRecord.RID1;
                                 var options = { "backdrop": "static", keyboard: true };
-                                $.ajax({
-                                    type: "GET",
-                                    url: '/Stock/Edit',
-                                    contentType: "application/json; charset=utf-8",
-                                    data: { "id": ens },
-                                    datatype: "json",
-                                    success: function (data) {
-                                        debugger;
-                                        $('#myModalContent').html(data);
-                                        $('#myModal').modal(options);
-                                        $('#myModal').modal('show');
-                                    },
-                                    error: function (response) {
-                                        alert(response.status + " " + response.responseText);
-                                    }
-                                });
+                               $modal.load('CODES/STOCK/ST_DET.php',{'id1': ens},
+								function(){
+									$modal.modal('show');
+								});
                             }
                         }
             ],
@@ -265,12 +254,12 @@ $(function () {
                                         contentType: "application/json; charset=utf-8",
                                         dataType: "json",
                                         success: function (data) {
-											$('#adPtno').val(data[1]);
-											$('#adUNIT').val(data[10]);
-											$('#adMRP').val(data[3]);
-											$('#adGROP').val(data[4]);
-											$('#adTYPE').val(data[5]);
-											$('#adTAX').val(data[8]);
+											$('#adPtno').val(data.PART_NO);
+											$('#adUNIT').val(data.unit);
+											$('#adMRP').val(data.MRP);
+											$('#adGROP').val(data.GROP);
+											$('#adTYPE').val(data.CATE);
+											$('#adTAX').val(data.TRATE);
 											var spr = parseFloat($('#adTAX').val()) + 100
 											$('#adSPRICE').val(parseFloat($('#adMRP').val()) / spr * 100)
                                             $('#adTVAL').val(parseFloat($('#adSPRICE').val()) * parseFloat($('#adTAX').val()) / 100)
@@ -312,12 +301,12 @@ $(function () {
                                         contentType: "application/json; charset=utf-8",
                                         dataType: "json",
                                         success: function (data) {
-											$('#adParti').val(data[2]);
-											$('#adUNIT').val(data[10]);
-											$('#adMRP').val(data[3]);
-											$('#adGROP').val(data[4]);
-											$('#adTYPE').val(data[5]);
-											$('#adTAX').val(data[8]);
+											$('#adParti').val(data.PARTI);
+											$('#adUNIT').val(data.unit);
+											$('#adMRP').val(data.MRP);
+											$('#adGROP').val(data.GROP);
+											$('#adTYPE').val(data.CATE);
+											$('#adTAX').val(data.TRATE);
 											var spr = parseFloat($('#adTAX').val()) + 100
 											$('#adSPRICE').val(parseFloat($('#adMRP').val()) / spr * 100)
                                             $('#adTVAL').val(parseFloat($('#adSPRICE').val()) * parseFloat($('#adTAX').val()) / 100)
@@ -617,7 +606,7 @@ $(function () {
 <div id="ADD_ITM_DIV_PR">
     <div>ADD NEW STOCK ITEM</div>
     <div style="overflow: hidden;">
-	<form id="add_it" action="ST_LIST.php" method="post" name="ADD STOCK ITEM" style="display: block;">
+	<form id="add_it" action="ST_LIST.php" method="post" name="ADD_STOCK-ITEM" style="display: block;">
         <table class="table table-bordered table-hover table-responsive adn1" style="font-size : smaller">
             <tr>
                 <td><label for="PRPART_NO">PART NO</label></td>
@@ -673,5 +662,6 @@ $(function () {
     </div>
 </div>
 	</div>
+	<div id="load_popup_modal_show_id" class="modal fade" tabindex="-1"></div>
 	</body>
 </html>

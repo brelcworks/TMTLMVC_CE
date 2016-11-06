@@ -8,7 +8,7 @@ require_once 'LAYOUT.php';
 		var wd = $(window).width() - 50;
         var ht = $(window).height() - 190;
 		$("#list_records").jqGrid({
-			url: "CODES/STOCK/getGridData.php",
+			url: "CODES/STOCK/MSSQLGRID.php",
 			datatype: "json",
 			mtype: "GET",
 			colNames: ["ID", "PART NO", "PART NAME", "MRP", "TYPE", "CATEGORY", "UNIT"],
@@ -19,7 +19,7 @@ require_once 'LAYOUT.php';
 				{ name: "MRP", width:'5%'},
 				{ name: "GROP", width:'5%'},
 				{ name: "CATE", width:'10%'},
-				{ name: "UNIT", width:'10%'}
+				{ name: "unit", width:'10%'}
 			],
 			height: ht,
 			width: wd,
@@ -30,7 +30,7 @@ require_once 'LAYOUT.php';
             loadComplete: function () {
                $("option[value=100000000]").text('All');
             },
-			sortname: "PART_NO",
+			sortname: "PARTI",
 			sortorder: "asc",
 			emptyrecords: 'BLANK',
             loadonce: true,

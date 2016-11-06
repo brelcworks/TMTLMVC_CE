@@ -1,7 +1,7 @@
 <?php
-include ("connect1.php");
+include ("MSSQL.php");
 $aData=$_GET['aData'];
-$result = mysql_query("SELECT * FROM sheet1 where  PART_NO LIKE '%".$aData."%'");
-  $array = mysql_fetch_row($result);                            
+$result = sqlsrv_query($conn, "SELECT * FROM SHEET1 where  PART_NO LIKE '%".$aData."%'");
+  $array = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC);                            
   echo json_encode($array);
 ?>
